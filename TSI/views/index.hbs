@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <title>Express</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+  <h1>Главная</h1>
+  {{> menu}}
+
+  <script type="text/javascript">
+    socket=new WebSocket("ws://localhost:8080/ws");
+
+    socket.onclose = function(event) {
+      if (event.wasClean) {
+        console.log('Соед. закрыто чисто');
+      } else {
+        console.log('Обрыв соединения');
+      }
+      console.log('Код: ' + event.code + ' причина: ' + event.reason);
+    };
+
+    socket.onmessage = function(event) {
+      console.log("Получены данные " + event.data);
+
+      if(event.data.substr(0, 6) == "alert ")
+      {
+        alert(event.data.substr((6)));
+      }
+    };
+
+    socket.onerror = function(error) {
+      console.log("Ошибка " + error.message);
+    }
+  </script>
+
+</body>
+
+</html>

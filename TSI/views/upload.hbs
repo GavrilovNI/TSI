@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title>Upload</title>
+    <link rel="stylesheet" href="/stylesheets/upload.css">
+</head>
+
+<body>
+    <h1>Upload</h1>
+    {{> menu}}
+
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+        <p>Выберите файл своей работы</p>
+        <input type="file" name="file" id="file">
+
+        <input type="submit" value="Загрузить">
+    </form>
+
+    <script type="text/javascript">
+        function validateForm(){
+            const file = document.getElementById('file').value;
+
+
+            if(file=="")
+            {
+                alert("choose file!");
+                return false;
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

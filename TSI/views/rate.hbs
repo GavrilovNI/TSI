@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Rate</title>
+</head>
+<body>
+    <h1>Rating</h1>
+    {{> menu}}
+
+    <h3>{{filename}}</h3><br/>
+
+    <iframe src="/files/{{filename}}" width="700" height="500" align="left">
+        Ваш браузер не поддерживает плавающие фреймы!
+    </iframe>
+
+
+    <form method="post" enctype="multipart/form-data">
+
+        Оценка: <input type="range" name="rate" min="1" max="5" value="5" onchange="updateRateLabel(this.value)" oninput="updateRateLabel(this.value)"><label id = "ratelabel">5</label><br/>
+        Комментарий: <input type="text" name="comment"><br/>
+
+        <input type="submit" value="Оценить"><br/>
+    </form>
+
+    {{#if ratesVisible}}
+        <h3>Оценки:</h3>
+        <ul>
+            {{#each rates}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
+
+
+    <script type="text/javascript">
+        function updateRateLabel(value){
+            document.getElementById("ratelabel").innerHTML = value;
+        }
+    </script>
+
+</body>
+</html>
