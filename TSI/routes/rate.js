@@ -1,6 +1,40 @@
 const express = require('express');
 const router = express.Router();
 const db = require('./db');
+const utils = require('./utils');
+const path = require("path");
+const fs = require('fs');
+
+
+
+const GetFilesRatesCount = (callback) =>{
+    fs.readdir(utils.uploadsDir, function (err, files) {
+        //handling error
+        if (err) {
+            return console.log('Unable to scan directory: ' + err);
+        }
+
+        const arr = files.map((file)=>{
+            return
+        })
+
+
+
+        //listing all files using forEach
+        files.forEach(function (file) {
+            // Do whatever you want to do with the file
+
+            db.GetRatesCount(file, ((count)=>{
+                arr.push({file, count});
+            }));
+
+
+        });
+
+        //console.log(arr);
+    });
+};
+
 
 router.get('/', (req, res) => {
 
