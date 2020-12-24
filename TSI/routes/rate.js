@@ -24,13 +24,14 @@ const Get3RandomFilesWithLessRateCount = (callback)=> {
                 arr.unshift({name: element, count: 0});
             });
 
-            var res = [[], [], []];
+            let res = [[], [], []];
 
             if (arr.length > 0) {
 
-                var i = 0;
-                var c = arr[0].count;
+                let i = 0;
+                let c = arr[0].count;
 
+                let BreakException = {};
                 try {
                     arr.forEach(element => {
 
