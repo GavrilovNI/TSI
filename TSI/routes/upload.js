@@ -1,36 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-
 const utils = require('./utils');
-const db = require('./db');
-
-const path = require('path');
 const fs = require('fs');
-
-
 
 
 router.get('/', (req, res) => {
 
     res.render('upload.hbs');
-
-    /*fs.readdir(utils.uploadsDir, function (err, files) {
-        //handling error
-        if (err) {
-            return console.log('Unable to scan directory: ' + err);
-        }
-
-
-        console.log(files.length);
-        //listing all files using forEach
-        files.forEach(function (file) {
-            // Do whatever you want to do with the file
-            console.log(file);
-        });
-    });*/
-
-
 })
 
 router.post('/', (req, res)=>{
@@ -40,8 +17,6 @@ router.post('/', (req, res)=>{
         var file = req.files.file;
         var filename = file.name;
 
-        //var fileExtension = utils.fileExtensionStr.exec(filename) || "";
-
         const path = utils.uploadsDir+filename;
 
         if(fs.existsSync(path))
@@ -50,10 +25,12 @@ router.post('/', (req, res)=>{
         }
         else
         {
+
             file.mv(path, (err) => {
                 if(err)
                 {
-                    res.send(err);
+                    console.error(err);
+                    res.render("error", {error :"error on uploading file"});
                 }
                 else
                 {

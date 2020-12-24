@@ -32,6 +32,8 @@ const GetFilesRatesCount = (callback) =>{
 
 const Get3RandomFilesWithLessRateCount = (callback)=> {
 
+
+
     db.GetFilesByCount((arr) => {
         fs.readdir(utils.uploadsDir, function (err, files) {
 
@@ -107,9 +109,6 @@ const Get3RandomFilesWithLessRateCount = (callback)=> {
 
 
 router.get('/', (req, res) => {
-
-
-
     Get3RandomFilesWithLessRateCount((arr)=>{
         res.render("rate3.hbs", {
             filename1: arr[0],
@@ -117,16 +116,18 @@ router.get('/', (req, res) => {
             filename3: arr[2]
         });
     });
-
-
-
-
-
 })
 
 router.get('/:filename', (req, res) => {
 
     const filename = req.params["filename"];
+
+    if(!fs.existsSync(utils.uploadsDir+filename))
+    {
+        res.render("error");
+        return;
+    }
+
     db.GetRates(filename, (rates) =>{
 
         const strRates = Array.from(rates, x =>"rate: " + x.rate+", comment: "+(x.comment==""?"not present":"'"+x.comment+"'"));
@@ -141,6 +142,14 @@ router.get('/:filename', (req, res) => {
 })
 
 router.post('/:filename', (req, res) => {
+
+    const filename = req.params["filename"];
+
+    if(!fs.existsSync(utils.uploadsDir+filename))
+    {
+        res.render("error");
+        return;
+    }
 
     if(!req.body.rate)
     {
@@ -157,7 +166,7 @@ router.post('/:filename', (req, res) => {
     }
 
 
-    const filename = req.params["filename"];
+
     const comment = req.body.comment;
 
     db.AddRate(filename, rate, comment);

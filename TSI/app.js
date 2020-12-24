@@ -1,10 +1,7 @@
 const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-
-
-
+//const cookieParser = require('cookie-parser');
+//const logger = require('morgan');
+const fs = require('fs');
 const upload = require('express-fileupload');
 
 
@@ -14,15 +11,11 @@ const rateRouter = require('./routes/rate');
 const filesRouter = require('./routes/files');
 
 
-//const http = require("http");
-//const WebSocket = require( "ws");
-
+const utils = require('./routes/utils');
 
 const app = express();
 
-
-app.use(upload()); // Don't forget this line!
-//const jsonParser = express.json();
+app.use(upload());
 
 
 const hbs = require("hbs");
@@ -30,6 +23,10 @@ app.set("view engine", "hbs");
 hbs.registerPartials(__dirname + "/views/partials");
 
 
+
+if (!fs.existsSync(utils.uploadsDir)){
+    fs.mkdirSync(utils.uploadsDir);
+}
 
 
 app.use('/', indexRouter);
