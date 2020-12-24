@@ -57,7 +57,6 @@ router.post('/', (req, res)=>{
                 }
                 else
                 {
-                    db.AddFile(filename);
                     res.send("<script> alert('file uploaded!'); window.location.href = '/upload/';  </script>");
                 }
             });

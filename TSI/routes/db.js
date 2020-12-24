@@ -45,9 +45,9 @@ const CreateDbsIfNeeded = ()=>{
             console.log(row.id + ': ' + row.info);
         });*/
 
-        db.each('SELECT * FROM rates', function(err, row) {
+        /*db.each('SELECT * FROM rates', function(err, row) {
             console.log(row);
-        });
+        });*/
 
         /*db.each('SELECT * FROM files', function(err, row) {
             console.log(row);
@@ -151,11 +151,28 @@ const GetRatesCount = async (name, callback) => {
     const db = new sqlite3.Database(utils.ratesDBPath);
 
     db.serialize(function() {
-        db.all("SELECT COUNT(*) FROM rates WHERE name='"+name+"'", (err, allRows) => {
+        db.all("SELECT COUNT(*) as count FROM rates WHERE name='"+name+"'", (err, allRows) => {
 
             if(!err)
             {
-                callback(allRows[0]['COUNT(*)']);
+                callback(allRows[0].count);
+            }
+
+        });
+    });
+
+    db.close();
+}
+
+const GetFilesByCount = async (callback) => {
+    const db = new sqlite3.Database(utils.ratesDBPath);
+
+    db.serialize(function() {
+        db.all("SELECT name, COUNT(*) as count FROM rates GROUP BY name ORDER BY count", (err, allRows) => {
+
+            if(!err)
+            {
+                callback(allRows);
             }
 
         });
@@ -165,12 +182,11 @@ const GetRatesCount = async (name, callback) => {
 }
 
 
-
-
 module.exports = {
     //AddFile,
     AddRate,
     GetRates,
-    GetRatesCount
+    GetRatesCount,
+    GetFilesByCount
 //GetCount
 };
