@@ -1,0 +1,8 @@
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.ppm
+
+*.db
+TSI/uploads
