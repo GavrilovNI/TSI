@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Список работ</title>
+</head>
+<body>
+    <h1>Список работ</h1>
+{{> menu}}
+
+{{#if filesVisible}}
+    <h3>Работы:</h3>
+    <ul>
+        {{#each files}}
+            <a href="/rate/{{this}}">{{this}}</a><br/>
+        {{/each}}
+    </ul>
+{{else}}
+    <h3>Ни одна работа не загружена</h3>
+{{/if}}
+
+</body>
+</html>
