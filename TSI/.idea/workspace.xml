@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c88eac35-6174-464a-b4a4-c6ed917a513b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/rate.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/rate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/utils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/rate.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/rate.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/files.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/views/files.hbs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +59,7 @@
       <updated>1608711389720</updated>
       <workItem from="1608711390935" duration="18967000" />
       <workItem from="1608738263857" duration="15193000" />
-      <workItem from="1608755200283" duration="16143000" />
+      <workItem from="1608755200283" duration="16476000" />
     </task>
     <servers />
   </component>
