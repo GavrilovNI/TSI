@@ -35,4 +35,9 @@ app.use('/rate/', rateRouter);
 app.use('/files/', filesRouter);
 
 
+app.get('*', function(req, res){
+    res.render('error');
+});
+
+
 module.exports = app;
