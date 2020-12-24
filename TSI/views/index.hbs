@@ -9,34 +9,8 @@
   <h1>Главная</h1>
   {{> menu}}
 
-  <h3>Это сайт загрузки работ</h3>
+  <h3>Это сайт оценивания работ</h3>
   <p>Лабораторная работа №2 по предмету 'Технология сети интернет'. Вариант 2. Выполнено Гавриловым Никитой 381808-1</p>
-
-  <script type="text/javascript">
-    socket=new WebSocket("ws://localhost:8080/ws");
-
-    socket.onclose = function(event) {
-      if (event.wasClean) {
-        console.log('Соед. закрыто чисто');
-      } else {
-        console.log('Обрыв соединения');
-      }
-      console.log('Код: ' + event.code + ' причина: ' + event.reason);
-    };
-
-    socket.onmessage = function(event) {
-      console.log("Получены данные " + event.data);
-
-      if(event.data.substr(0, 6) == "alert ")
-      {
-        alert(event.data.substr((6)));
-      }
-    };
-
-    socket.onerror = function(error) {
-      console.log("Ошибка " + error.message);
-    }
-  </script>
 
 </body>
 

@@ -5,36 +5,9 @@ const utils = require('./utils');
 const path = require("path");
 const fs = require('fs');
 
-
-const GetFilesRatesCount = (callback) =>{
-    fs.readdir(utils.uploadsDir, function (err, files) {
-        //handling error
-        if (err) {
-            return console.log('Unable to scan directory: ' + err);
-        }
-
-        const arr = [];
-
-
-        for (const file of files) {
-            db.GetRatesCount(file, ((count)=>{
-                arr.push({file, count});
-
-                if(files.length==arr.length)
-                    callback(arr);
-
-            }));
-        }
-
-    });
-};
-
-
 const Get3RandomFilesWithLessRateCount = (callback)=> {
 
-
-
-    db.GetFilesByCount((arr) => {
+    db.GetFilesOrderByRatesCount((arr) => {
         fs.readdir(utils.uploadsDir, function (err, files) {
 
 
@@ -106,8 +79,6 @@ const Get3RandomFilesWithLessRateCount = (callback)=> {
 
 };
 
-
-
 router.get('/', (req, res) => {
     Get3RandomFilesWithLessRateCount((arr)=>{
         res.render("rate3.hbs", {
@@ -122,7 +93,7 @@ router.get('/:filename', (req, res) => {
 
     const filename = req.params["filename"];
 
-    if(!fs.existsSync(utils.uploadsDir+filename))
+    if(!utils.HasFile(filename))
     {
         res.render("error");
         return;
@@ -145,7 +116,7 @@ router.post('/:filename', (req, res) => {
 
     const filename = req.params["filename"];
 
-    if(!fs.existsSync(utils.uploadsDir+filename))
+    if(!utils.HasFile(filename))
     {
         res.render("error");
         return;

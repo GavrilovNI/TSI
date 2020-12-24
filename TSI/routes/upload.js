@@ -19,7 +19,7 @@ router.post('/', (req, res)=>{
 
         const path = utils.uploadsDir+filename;
 
-        if(fs.existsSync(path))
+        if(utils.HasFile(filename))
         {
             res.send("<script> alert('file already exists, change name of it!'); window.location.href = '/upload/';  </script>");
         }
