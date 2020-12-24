@@ -101,12 +101,10 @@ router.get('/:filename', (req, res) => {
 
     db.GetRates(filename, (rates) =>{
 
-        const strRates = Array.from(rates, x =>"rate: " + x.rate+", comment: "+(x.comment==""?"not present":"'"+x.comment+"'"));
-
         res.render("rate.hbs", {
             filename: filename,
             ratesVisible: rates.length>0,
-            rates: strRates
+            rates: rates
         });
     })
 

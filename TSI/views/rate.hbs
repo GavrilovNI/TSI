@@ -28,7 +28,7 @@
         <h3>Оценки:</h3>
         <ul>
             {{#each rates}}
-                <li>{{this}}</li>
+                <li>Оценка: {{this.rate}}{{#if this.comment}}, Комметарий: '{{this.comment}}'{{/if}}</li>
             {{/each}}
         </ul>
     {{else}}
@@ -39,7 +39,6 @@
     <script type="text/javascript">
         function updateRateLabel(){
             value = document.getElementById("raterange").value;
-            alert(value);
             document.getElementById("ratelabel").innerHTML = value;
         }
     </script>
